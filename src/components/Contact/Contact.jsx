@@ -1,9 +1,9 @@
-const Contact = ({ data: { name, number } }) => {
+const Contact = ({ data: { name, number, id }, deleteContact }) => {
   return (
     <div>
       <p>{name}</p>
       <p>{number}</p>
-      <button>Delete</button>
+      <button onClick={() => deleteContact(id)}>Delete</button>
     </div>
   );
 };

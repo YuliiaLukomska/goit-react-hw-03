@@ -19,12 +19,18 @@ function App() {
     setContacts((prevState) => [...prevState, finalNewContact]);
   };
 
+  const deleteContact = (contactId) => {
+    setContacts((prevState) =>
+      prevState.filter((contact) => contact.id !== contactId)
+    );
+  };
+
   return (
     <div>
       <h1>Phonebook</h1>
       <ContactForm addContacts={addNewContacts} />
       <SearchBox value={value} onFilter={handleChange} />
-      <ContactList contactsArray={contacts} />
+      <ContactList contactsArray={contacts} deleteContact={deleteContact} />
     </div>
   );
 }
