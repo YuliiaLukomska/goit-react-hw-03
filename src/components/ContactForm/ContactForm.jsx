@@ -1,4 +1,16 @@
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
+const FeedbackSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(3, "Too Short!")
+    .max(50, "Too Long")
+    .required("Required"),
+  number: Yup.string()
+    .min(3, "Too Short!")
+    .max(50, "Too Long")
+    .required("Required"),
+});
 
 const initialValues = {
   name: "",
@@ -12,11 +24,24 @@ const ContactForm = ({ addContacts }) => {
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validationSchema={FeedbackSchema}
+    >
       <Form>
-        <Field name="name" type="text" />
-        <Field name="number" type="text" />
-        <button type="submit">Add</button>
+        <label>
+          Name
+          <Field name="name" type="text" />
+          <ErrorMessage name="name" component="span" />
+        </label>
+        <label>
+          Number
+          <Field name="number" type="text" />
+          <ErrorMessage name="number" component="span" />
+        </label>
+
+        <button type="submit">Add contact</button>
       </Form>
     </Formik>
   );
