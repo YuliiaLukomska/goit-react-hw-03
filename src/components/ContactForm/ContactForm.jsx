@@ -1,5 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import css from "./ContactForm.module.css";
 
 const FeedbackSchema = Yup.object().shape({
   name: Yup.string()
@@ -29,7 +30,7 @@ const ContactForm = ({ addContacts }) => {
       onSubmit={handleSubmit}
       validationSchema={FeedbackSchema}
     >
-      <Form>
+      <Form className={css.formWrapper}>
         <label>
           Name
           <Field name="name" type="text" />
