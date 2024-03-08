@@ -31,18 +31,20 @@ const ContactForm = ({ addContacts }) => {
       validationSchema={FeedbackSchema}
     >
       <Form className={css.formWrapper}>
-        <label>
+        <label className={css.formLabel}>
           Name
           <Field name="name" type="text" />
-          <ErrorMessage name="name" component="span" />
+          <ErrorMessage name="name" component="span" className={css.error} />
         </label>
-        <label>
+        <label className={css.formLabel}>
           Number
           <Field name="number" type="text" />
-          <ErrorMessage name="number" component="span" />
+          <ErrorMessage name="number" component="span" className={css.error} />
         </label>
 
-        <button type="submit">Add contact</button>
+        <button className={css.formBtn} type="submit">
+          Add contact
+        </button>
       </Form>
     </Formik>
   );
